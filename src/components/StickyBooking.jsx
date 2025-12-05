@@ -48,11 +48,10 @@ const StickyBooking = () => {
               e.preventDefault()
               scrollToSection('#book')
             }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
           >
-            <span className="sticky-booking-icon">✂️</span>
-            <span className="sticky-booking-text">Book Now</span>
+            Book Now
           </motion.a>
         </motion.div>
       )}

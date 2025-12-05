@@ -20,12 +20,12 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: var(--bg-white);
-    border-radius: 16px;
+    background-color: var(--charcoal-depth);
+    border-radius: 0;
     padding: 3rem;
     max-width: 500px;
     width: 90%;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--champagne-gold);
     z-index: 9999;
     text-align: center;
 }
@@ -35,34 +35,38 @@
     top: 1rem;
     right: 1rem;
     background: none;
-    border: none;
-    font-size: 2rem;
-    color: var(--text-secondary);
+    border: 1px solid rgba(201, 168, 106, 0.3);
+    font-size: 1.5rem;
+    color: var(--champagne-gold);
     cursor: pointer;
     width: 40px;
     height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
-    transition: all 0.3s ease;
+    border-radius: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .email-capture-close:hover {
-    background: var(--bg-light);
-    color: var(--text-primary);
+    background: rgba(201, 168, 106, 0.1);
+    border-color: var(--champagne-gold);
+    color: var(--muted-gold);
 }
 
 .email-capture-content h2 {
     font-size: 2rem;
     margin-bottom: 1rem;
-    color: var(--text-primary);
+    color: var(--off-white-cream);
+    font-family: var(--font-serif);
+    font-weight: 500;
 }
 
 .email-capture-content p {
-    color: var(--text-secondary);
+    color: var(--muted-gold);
     margin-bottom: 2rem;
-    line-height: 1.6;
+    line-height: var(--line-height-body);
+    font-weight: 300;
 }
 
 .email-capture-form {
@@ -73,17 +77,25 @@
 
 .email-capture-input {
     padding: 1rem;
-    border: 2px solid var(--border-color);
-    border-radius: 8px;
+    border: 1px solid rgba(201, 168, 106, 0.3);
+    border-radius: 0;
     font-size: 1rem;
     font-family: var(--font-primary);
-    transition: all 0.3s ease;
+    background: rgba(26, 26, 26, 0.6);
+    color: var(--off-white-cream);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 300;
+}
+
+.email-capture-input::placeholder {
+    color: var(--muted-gold);
+    opacity: 0.6;
 }
 
 .email-capture-input:focus {
     outline: none;
-    border-color: var(--accent-color);
-    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+    border-color: var(--champagne-gold);
+    background: rgba(26, 26, 26, 0.8);
 }
 
 .email-capture-submit {
@@ -92,8 +104,9 @@
 
 .email-capture-disclaimer {
     font-size: 0.875rem;
-    color: var(--text-light);
+    color: var(--muted-gold);
     margin-top: 1rem;
+    font-weight: 300;
 }
 
 .email-capture-success {
@@ -103,10 +116,10 @@
 .success-icon {
     width: 80px;
     height: 80px;
-    border-radius: 50%;
-    background: var(--accent-color);
-    color: var(--bg-white);
-    font-size: 3rem;
+    border-radius: 0;
+    background: var(--champagne-gold);
+    color: var(--matte-black);
+    font-size: 2.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -114,12 +127,15 @@
 }
 
 .email-capture-success h2 {
-    color: var(--text-primary);
+    color: var(--off-white-cream);
     margin-bottom: 1rem;
+    font-family: var(--font-serif);
+    font-weight: 500;
 }
 
 .email-capture-success p {
-    color: var(--text-secondary);
+    color: var(--muted-gold);
+    font-weight: 300;
 }
 
 @media (max-width: 768px) {

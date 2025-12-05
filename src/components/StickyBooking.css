@@ -1,55 +1,43 @@
+/* Modern Luxury Sticky Booking CTA */
 .sticky-booking {
     position: fixed;
-    bottom: 2rem;
-    right: 2rem;
+    bottom: var(--space-xl);
+    right: var(--space-xl);
     z-index: 1000;
 }
 
 .sticky-booking-btn {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    background: var(--accent-color);
-    color: var(--bg-white);
-    padding: 1rem 2rem;
-    border-radius: 50px;
-    font-weight: 600;
-    font-size: 1.125rem;
-    box-shadow: 0 8px 24px rgba(212, 175, 55, 0.4);
-    transition: all 0.3s ease;
+    gap: var(--space-sm);
+    background: var(--champagne-gold);
+    color: var(--matte-black);
+    padding: var(--space-md) var(--space-lg);
+    border-radius: 0;
+    font-weight: 500;
+    font-size: 0.875rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     text-decoration: none;
+    border: 1px solid var(--champagne-gold);
+    font-family: var(--font-primary);
 }
 
 .sticky-booking-btn:hover {
-    box-shadow: 0 12px 32px rgba(212, 175, 55, 0.5);
+    background: var(--muted-gold);
+    border-color: var(--muted-gold);
     transform: translateY(-2px);
-}
-
-.sticky-booking-icon {
-    font-size: 1.5rem;
-}
-
-.sticky-booking-text {
-    white-space: nowrap;
 }
 
 @media (max-width: 768px) {
     .sticky-booking {
-        bottom: 1rem;
-        right: 1rem;
+        bottom: var(--space-lg);
+        right: var(--space-lg);
     }
 
     .sticky-booking-btn {
-        padding: 0.875rem 1.5rem;
-        font-size: 1rem;
-    }
-
-    .sticky-booking-text {
-        display: none;
-    }
-
-    .sticky-booking-icon {
-        font-size: 1.75rem;
+        padding: var(--space-sm) var(--space-md);
+        font-size: 0.75rem;
     }
 }
-

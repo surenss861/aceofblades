@@ -1,51 +1,73 @@
 .faq {
-    padding: 6rem 0;
-    background-color: var(--bg-light);
+    padding: var(--space-2xl) 0;
+    background-color: var(--charcoal-depth);
+    position: relative;
+}
+
+.faq::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--champagne-gold), transparent);
+    opacity: 0.3;
 }
 
 .faq-list {
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
 }
 
 .faq-item {
-    background-color: var(--bg-white);
-    border-radius: 8px;
-    margin-bottom: 1rem;
-    box-shadow: var(--shadow-sm);
+    background-color: rgba(26, 26, 26, 0.6);
+    border-radius: 0;
+    margin-bottom: var(--space-md);
+    border: 1px solid rgba(201, 168, 106, 0.2);
     overflow: hidden;
-    transition: all 0.3s ease;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq-item:hover {
+    border-color: rgba(201, 168, 106, 0.4);
+    background-color: rgba(26, 26, 26, 0.8);
 }
 
 .faq-item.active {
-    box-shadow: var(--shadow-md);
+    border-color: var(--champagne-gold);
+    border-left-width: 3px;
+    border-left-color: var(--champagne-gold);
+    background-color: rgba(26, 26, 26, 0.9);
 }
 
 .faq-question {
     width: 100%;
-    padding: 1.5rem;
+    padding: var(--space-lg);
     background: none;
     border: none;
     text-align: left;
     font-size: 1.125rem;
-    font-weight: 600;
-    color: var(--text-primary);
+    font-weight: 500;
+    color: var(--off-white-cream);
     cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    min-height: 60px;
-    transition: all 0.3s ease;
+    min-height: 70px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: var(--font-serif);
 }
 
 .faq-question:hover {
-    background-color: var(--bg-light);
+    background-color: rgba(201, 168, 106, 0.05);
+    color: var(--champagne-gold);
 }
 
 .faq-icon {
     font-size: 1.5rem;
-    color: var(--accent-color);
-    transition: all 0.3s ease;
+    color: var(--champagne-gold);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     font-weight: 300;
 }
 
@@ -54,9 +76,10 @@
 }
 
 .faq-answer p {
-    padding: 0 1.5rem 1.5rem;
-    color: var(--text-secondary);
-    line-height: 1.7;
+    padding: 0 var(--space-lg) var(--space-lg);
+    color: var(--muted-gold);
+    line-height: var(--line-height-body);
+    font-weight: 300;
 }
 
 @media (max-width: 480px) {

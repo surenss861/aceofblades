@@ -4,8 +4,8 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(5px);
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(20px);
     z-index: 10000;
 }
 
@@ -15,43 +15,51 @@
     left: 50%;
     transform: translate(-50%, -50%);
     background: var(--bg-white);
-    border-radius: 20px;
-    padding: 3rem;
-    max-width: 600px;
+    border-radius: var(--radius-xl);
+    padding: var(--space-xl);
+    max-width: 650px;
     width: 90%;
     max-height: 90vh;
     overflow-y: auto;
     z-index: 10001;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    box-shadow: var(--shadow-luxury), 0 0 60px rgba(212, 175, 55, 0.2);
+    border: 2px solid var(--accent-color);
 }
 
 .booking-progress-close {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: none;
-    border: none;
+    top: var(--space-md);
+    right: var(--space-md);
+    background: rgba(212, 175, 55, 0.1);
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--accent-color);
     font-size: 2rem;
-    color: var(--text-secondary);
+    color: var(--accent-color);
     cursor: pointer;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    transition: all 0.3s ease;
+    transition: var(--transition);
+    font-weight: 300;
 }
 
 .booking-progress-close:hover {
-    background: var(--bg-light);
-    color: var(--text-primary);
+    background: var(--accent-color);
+    color: var(--bg-dark);
+    transform: scale(1.1) rotate(90deg);
+    box-shadow: var(--shadow-gold);
 }
 
 .booking-progress-header h2 {
-    margin-bottom: 2rem;
+    margin-bottom: var(--space-xl);
     text-align: center;
     color: var(--text-primary);
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    font-weight: 400;
 }
 
 .booking-progress-steps {
@@ -129,28 +137,32 @@
 }
 
 .booking-option {
-    padding: 1.25rem;
-    background: var(--bg-light);
+    padding: var(--space-lg);
+    background: var(--bg-cream);
     border: 2px solid var(--border-color);
-    border-radius: 12px;
+    border-radius: var(--radius-lg);
     font-size: 1.125rem;
-    font-weight: 500;
+    font-weight: 600;
     color: var(--text-primary);
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: var(--transition);
     text-align: left;
+    font-family: var(--font-primary);
 }
 
 .booking-option:hover {
     border-color: var(--accent-color);
-    transform: translateY(-2px);
+    background: rgba(212, 175, 55, 0.1);
+    transform: translateY(-3px) translateX(5px);
     box-shadow: var(--shadow-md);
 }
 
 .booking-option.selected {
     background: var(--accent-color);
-    color: var(--bg-white);
-    border-color: var(--accent-color);
+    color: var(--bg-dark);
+    border-color: var(--accent-gold);
+    box-shadow: var(--shadow-gold);
+    font-weight: 700;
 }
 
 .booking-datetime {

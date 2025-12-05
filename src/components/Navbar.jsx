@@ -17,11 +17,11 @@ const Navbar = () => {
   }, [])
 
   useEffect(() => {
-    // GSAP animation for navbar on scroll
+    // Slow, intentional GSAP animation for navbar on scroll
     gsap.to('.navbar', {
-      backgroundColor: isScrolled ? 'rgba(255, 255, 255, 0.98)' : 'rgba(255, 255, 255, 0.95)',
-      boxShadow: isScrolled ? '0 4px 16px rgba(0, 0, 0, 0.15)' : '0 2px 8px rgba(0, 0, 0, 0.1)',
-      duration: 0.3,
+      backgroundColor: isScrolled ? 'rgba(12, 12, 12, 0.98)' : 'rgba(12, 12, 12, 0.95)',
+      boxShadow: isScrolled ? '0 4px 20px rgba(0, 0, 0, 0.4)' : '0 2px 16px rgba(0, 0, 0, 0.3)',
+      duration: 0.6,
       ease: 'power2.out'
     })
   }, [isScrolled])

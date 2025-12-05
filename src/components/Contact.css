@@ -1,82 +1,202 @@
-.contact {
-    padding: 6rem 0;
-    background-color: var(--bg-white);
+/* Modern Luxury Contact Section */
+.luxury-contact {
+    padding: var(--space-2xl) 0;
+    background-color: var(--charcoal-depth);
+    position: relative;
 }
 
-.contact-content {
+.contact-content-wrapper {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    margin-top: 3rem;
+    grid-template-columns: 1fr 1.2fr;
+    gap: var(--space-2xl);
+    margin-top: var(--space-xl);
+    align-items: start;
 }
 
 .contact-info {
     display: grid;
-    gap: 2rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+}
+
+.contact-item {
+    padding: var(--space-lg);
+    background: rgba(26, 26, 26, 0.6);
+    border-radius: 0;
+    border: 1px solid rgba(201, 168, 106, 0.2);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 100%;
+    background: var(--champagne-gold);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+
+.contact-item:hover::before {
+    opacity: 0.5;
+}
+
+.contact-item:hover {
+    border-color: rgba(201, 168, 106, 0.4);
+    background: rgba(26, 26, 26, 0.8);
+}
+
+.contact-icon {
+    font-size: 2rem;
+    margin-bottom: var(--space-sm);
+    opacity: 0.8;
 }
 
 .contact-item h3 {
-    color: var(--accent-color);
-    margin-bottom: 1rem;
-    font-size: 1.25rem;
-}
-
-.contact-item p,
-.contact-item address {
-    color: var(--text-secondary);
-    line-height: 1.8;
-}
-
-.contact-item a {
-    color: var(--text-primary);
+    font-size: 1.125rem;
+    font-family: var(--font-serif);
+    color: var(--off-white-cream);
+    margin-bottom: var(--space-md);
     font-weight: 500;
-    transition: color 0.3s ease;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
 }
 
-.contact-item a:hover {
-    color: var(--accent-color);
+.contact-item address,
+.contact-item p {
+    color: var(--muted-gold);
+    line-height: var(--line-height-body);
+    font-style: normal;
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+.contact-link {
+    color: var(--champagne-gold);
+    text-decoration: none;
+    font-weight: 400;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-block;
+}
+
+.contact-link:hover {
+    color: var(--muted-gold);
+}
+
+.hours-note {
+    font-size: 0.875rem;
+    color: var(--text-light);
+    font-style: italic;
 }
 
 .social-links {
     display: flex;
-    gap: 1rem;
+    flex-direction: column;
+    gap: var(--space-sm);
 }
 
-.social-links a {
-    padding: 0.5rem 1rem;
-    background-color: var(--bg-light);
-    border-radius: 4px;
-    font-weight: 500;
-    transition: all 0.3s ease;
+.social-link {
+    color: var(--champagne-gold);
+    text-decoration: none;
+    font-weight: 400;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-xs) 0;
 }
 
-.social-links a:hover {
-    background-color: var(--accent-color);
-    color: var(--bg-white);
+.social-link::before {
+    content: '—';
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.social-link:hover {
+    color: var(--muted-gold);
+    gap: var(--space-sm);
+}
+
+.social-link:hover::before {
+    opacity: 1;
+}
+
+.contact-map-wrapper {
+    position: relative;
+    height: 600px;
+    border-radius: 0;
+    overflow: hidden;
+    border: 1px solid var(--champagne-gold);
 }
 
 .contact-map {
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: var(--shadow-md);
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.map-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(201, 168, 106, 0.05) 0%,
+        transparent 50%
+    );
+    pointer-events: none;
+    z-index: 1;
 }
 
 .contact-map iframe {
     width: 100%;
     height: 100%;
-    min-height: 400px;
     border: none;
+    filter: grayscale(30%) brightness(0.9) contrast(1.1);
+    transition: filter 0.6s ease;
+}
+
+.contact-map-wrapper:hover iframe {
+    filter: grayscale(20%) brightness(0.95) contrast(1.15);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .contact-content-wrapper {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+    }
+    
+    .contact-map-wrapper {
+        height: 400px;
+    }
+    
+    .contact-info {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (max-width: 768px) {
-    .contact-content {
+    .luxury-contact {
+        padding: var(--space-xl) 0;
+    }
+    
+    .contact-info {
         grid-template-columns: 1fr;
+        gap: var(--space-md);
+    }
+    
+    .contact-item {
+        padding: var(--space-md);
+    }
+    
+    .contact-map-wrapper {
+        height: 300px;
     }
 }
-
-@media (max-width: 480px) {
-    .contact {
-        padding: 4rem 0;
-    }
-}
-

@@ -4,7 +4,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, var(--primary-color) 0%, #2d2d2d 100%);
+    background-color: var(--matte-black);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -13,7 +13,7 @@
 
 .loader-content {
     text-align: center;
-    color: var(--bg-white);
+    color: var(--off-white-cream);
 }
 
 .loader-logo {
@@ -24,14 +24,16 @@
     margin-left: auto;
     margin-right: auto;
     object-fit: contain;
+    filter: brightness(1.2);
 }
 
 .loader-text {
     font-family: var(--font-display);
     font-size: 2rem;
-    color: var(--bg-white);
+    color: var(--champagne-gold);
     margin-bottom: 2rem;
-    letter-spacing: 2px;
+    letter-spacing: 0.1em;
+    font-weight: 500;
 }
 
 .loader-sparkles {

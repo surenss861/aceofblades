@@ -15,6 +15,7 @@ const preloadImages = (urls) => {
 const Hero = () => {
   const heroRef = useRef(null)
   const titleRef = useRef(null)
+  const underlineRef = useRef(null)
   const subtitleRef = useRef(null)
   const ctaRef = useRef(null)
   const [currentSlide, setCurrentSlide] = useState(0)
@@ -31,69 +32,63 @@ const Hero = () => {
     // Preload all hero images
     preloadImages(slides)
 
-    // Cinematic entrance animation
-    const tl = gsap.timeline({ delay: 0.3 })
+    // Slow, intentional cinematic entrance animation
+    const tl = gsap.timeline({ delay: 0.5 })
     
-    // Title animation - split text effect
+    // Hero image scales from 1.05 → 1.0 (cinematic)
+    gsap.from('.hero-slide.active', {
+      scale: 1.05,
+      duration: 2,
+      ease: 'power2.out'
+    })
+    
+    // Title fades in from 20px lower (luxury motion)
     tl.from(titleRef.current, {
       opacity: 0,
-      y: 80,
-      duration: 1.2,
-      ease: 'power3.out'
+      y: 20,
+      duration: 1.5,
+      ease: 'power2.out'
     })
-    .from('.hero-title-line-2', {
-      opacity: 0,
-      y: 60,
-      duration: 1,
-      ease: 'power3.out'
-    }, '-=0.8')
+    // Gold accent underline draws in
+    .from(underlineRef.current, {
+      scaleX: 0,
+      duration: 1.2,
+      ease: 'power2.out',
+      transformOrigin: 'left'
+    }, '-=1')
     .from(subtitleRef.current, {
-      opacity: 0,
-      y: 40,
-      duration: 0.9,
+      opacity: 0.4,
+      y: 10,
+      duration: 1.2,
+      ease: 'power2.out'
+    }, '-=0.8')
+    .from(ctaRef.current, {
+      opacity: 0.4,
+      y: 10,
+      duration: 1,
       ease: 'power2.out'
     }, '-=0.6')
-    .from(ctaRef.current, {
-      opacity: 0,
-      y: 30,
-      scale: 0.95,
-      duration: 0.8,
-      ease: 'back.out(1.7)'
-    }, '-=0.4')
-    .from('.hero-badge', {
-      opacity: 0,
-      scale: 0.9,
-      duration: 0.6,
-      ease: 'power2.out'
-    }, '-=0.3')
 
-    // Parallax scroll effect
+    // Parallax scroll effect (2-3% movement - subtle and cinematic)
     ScrollTrigger.create({
       trigger: heroRef.current,
       start: 'top top',
       end: 'bottom top',
-      scrub: 1,
+      scrub: 1.5,
       onUpdate: (self) => {
+        const progress = self.progress
+        // Subtle 2-3% parallax movement
         gsap.to('.hero-slide.active', {
-          y: self.progress * 80,
-          scale: 1 + self.progress * 0.1,
+          y: progress * 30, // 30px max = ~3% of 1000px viewport
           ease: 'none'
         })
+        // Content fades slightly as you scroll
         gsap.to('.hero-content', {
-          y: self.progress * 40,
-          opacity: 1 - self.progress * 0.5,
+          opacity: 1 - progress * 0.3,
+          y: progress * 20,
           ease: 'none'
         })
       }
-    })
-
-    // Floating animation for badge
-    gsap.to('.hero-badge', {
-      y: -10,
-      duration: 2,
-      repeat: -1,
-      yoyo: true,
-      ease: 'power1.inOut'
     })
 
     return () => {
@@ -106,21 +101,13 @@ const Hero = () => {
   }, [])
 
   useEffect(() => {
-    // Auto-slide functionality
+    // Slow auto-slide (luxury timing)
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length)
-    }, 6000)
+    }, 8000) // Slower for luxury feel
 
     return () => clearInterval(interval)
   }, [slides.length])
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length)
-  }
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)
-  }
 
   const scrollToSection = (href) => {
     const element = document.querySelector(href)
@@ -130,10 +117,8 @@ const Hero = () => {
   }
 
   return (
-    <section id="home" className="hero luxury-hero" ref={heroRef}>
-      {/* Background Texture Layer */}
-      <div className="hero-texture" />
-      
+    <section id="home" className="hero modern-luxury-hero" ref={heroRef}>
+      {/* Full-bleed cinematic background */}
       <div className="hero-slider">
         {slides.map((slide, index) => (
           <div
@@ -143,115 +128,63 @@ const Hero = () => {
               backgroundImage: `url(${slide})`,
             }}
           >
+            {/* Cinematic overlay with vignette */}
             <div className="hero-overlay" />
+            {/* Soft grain texture */}
+            <div className="hero-grain" />
           </div>
         ))}
       </div>
 
-      {/* Floating Book Button */}
-      <motion.a
-        href="#book"
-        className="hero-floating-cta"
-        onClick={(e) => {
-          e.preventDefault()
-          scrollToSection('#book')
-        }}
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 1.5, type: 'spring', stiffness: 200 }}
-        whileHover={{ scale: 1.1, y: -5 }}
-        whileTap={{ scale: 0.95 }}
-      >
-        <span>Book Now</span>
-      </motion.a>
-
-      <div className="hero-controls">
-        <motion.button
-          className="hero-prev"
-          onClick={prevSlide}
-          aria-label="Previous slide"
-          whileHover={{ scale: 1.15, x: -5 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          ‹
-        </motion.button>
-        <motion.button
-          className="hero-next"
-          onClick={nextSlide}
-          aria-label="Next slide"
-          whileHover={{ scale: 1.15, x: 5 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          ›
-        </motion.button>
-      </div>
-
-      <div className="hero-indicators">
-        {slides.map((_, index) => (
-          <motion.button
-            key={index}
-            className={`hero-indicator ${index === currentSlide ? 'active' : ''}`}
-            onClick={() => setCurrentSlide(index)}
-            aria-label={`Slide ${index + 1}`}
-            whileHover={{ scale: 1.3 }}
-            whileTap={{ scale: 0.9 }}
-          />
-        ))}
-      </div>
-
+      {/* Editorial content layout */}
       <div className="container-wide">
-        <div className="hero-content luxury-hero-content">
-          {/* Asymmetric Layout */}
+        <div className="hero-content">
           <div className="hero-text-wrapper">
             <motion.p 
               className="hero-label"
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.5, duration: 0.8 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8, duration: 1 }}
             >
-              Toronto's Premier Grooming Experience
+              EST. 2020
             </motion.p>
             
             <h1 className="hero-title" ref={titleRef}>
-              <span className="hero-title-line-1">Crafted Cuts,</span>
-              <br />
-              <span className="hero-title-line-2 accent-text">Unmatched Detail.</span>
+              Where Every Cut<br />
+              <span className="accent-text">Tells Your Story</span>
             </h1>
             
+            {/* Gold accent underline */}
+            <div className="hero-underline" ref={underlineRef} />
+            
             <p className="hero-subtitle" ref={subtitleRef}>
-              Where precision meets artistry. Experience the luxury grooming standard that Toronto's elite trust.
+              Precision meets artistry. Where Toronto's most discerning gentlemen trust their transformation.
             </p>
             
             <div className="hero-cta" ref={ctaRef}>
               <motion.a
                 href="#book"
-                className="btn btn-large btn-primary magnetic-btn"
+                className="btn btn-primary magnetic-btn"
                 onClick={(e) => {
                   e.preventDefault()
                   scrollToSection('#book')
                 }}
-                whileHover={{ scale: 1.05, y: -3 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
                 Reserve Your Appointment
               </motion.a>
             </div>
           </div>
-
-          <div className="hero-badge">
-            <div className="stars">★★★★★</div>
-            <span className="review-count">150+ Five-Star Reviews</span>
-          </div>
         </div>
       </div>
 
-      {/* Scroll Indicator */}
+      {/* Scroll indicator - minimal */}
       <motion.div 
         className="hero-scroll-indicator"
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+        animate={{ y: [0, 8, 0] }}
+        transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
       >
-        <span>Scroll</span>
         <div className="scroll-line" />
       </motion.div>
     </section>

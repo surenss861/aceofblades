@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import './Reviews.css'
@@ -13,43 +13,41 @@ const Reviews = () => {
     gsap.registerPlugin(ScrollTrigger)
 
     const header = sectionRef.current?.querySelector('.section-header')
-    const scrollTriggers = []
     
     if (header) {
-      gsap.set(header, { opacity: 0, y: 40 })
-      const headerSt = ScrollTrigger.create({
+      gsap.set(header, { opacity: 0.4, y: 20 })
+      ScrollTrigger.create({
         trigger: sectionRef.current,
         start: 'top 80%',
         onEnter: () => {
           gsap.to(header, {
             opacity: 1,
             y: 0,
-            duration: 1,
-            ease: 'power3.out'
+            duration: 1.2,
+            ease: 'power2.out'
           })
         }
       })
-      scrollTriggers.push(headerSt)
     }
 
-    // Auto-scroll carousel
+    // Slow auto-scroll (luxury timing)
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % reviews.length)
-    }, 5000)
+    }, 8000)
 
     return () => {
       clearInterval(interval)
-      scrollTriggers.forEach(st => st.kill())
       ScrollTrigger.refresh()
     }
   }, [])
 
   useEffect(() => {
     if (carouselRef.current) {
+      // Slow, intentional scroll animation
       gsap.to(carouselRef.current, {
         x: `-${currentIndex * 100}%`,
-        duration: 0.8,
-        ease: 'power3.inOut'
+        duration: 1.2,
+        ease: 'power2.inOut'
       })
     }
   }, [currentIndex])
@@ -57,35 +55,35 @@ const Reviews = () => {
   const reviews = [
     {
       stars: '★★★★★',
-      text: '"Best barbershop in Scarborough! Ace gave me the cleanest fade I\'ve ever had. The atmosphere is relaxed and professional. Highly recommend!"',
+      text: 'Best barbershop in Scarborough! Ace gave me the cleanest fade I\'ve ever had. The atmosphere is relaxed and professional. Highly recommend!',
       author: 'Sajid Malgi',
       photo: '/sajidmalgi-test.avif',
       location: 'Scarborough'
     },
     {
       stars: '★★★★★',
-      text: '"Chris is amazing with beards! The hot towel shave is a game changer. This place has become my go-to spot for all my grooming needs."',
+      text: 'Chris is amazing with beards! The hot towel shave is a game changer. This place has become my go-to spot for all my grooming needs.',
       author: 'Sharan Tyler',
       photo: '/sharantyler-test.avif',
       location: 'Toronto'
     },
     {
       stars: '★★★★★',
-      text: '"Dhan always knows exactly what I want. Great service, great cuts, and the whole team is friendly. Ace of Blades is the real deal!"',
+      text: 'Dhan always knows exactly what I want. Great service, great cuts, and the whole team is friendly. Ace of Blades is the real deal!',
       author: 'Oliver Rahim',
       photo: '/oliverrahim-test.avif',
       location: 'Scarborough'
     },
     {
       stars: '★★★★★',
-      text: '"The AOB Presidential package is worth every penny. Complete transformation every time. This is luxury barbering at its finest."',
+      text: 'The AOB Presidential package is worth every penny. Complete transformation every time. This is luxury barbering at its finest.',
       author: 'Daniel Thevara',
       photo: '/danielthevara-test.avif',
       location: 'Toronto'
     },
     {
       stars: '★★★★★',
-      text: '"Clean cuts, relaxed vibes, and professional service. Been coming here for months and never disappointed. Best barbershop on Kingston Rd!"',
+      text: 'Clean cuts, relaxed vibes, and professional service. Been coming here for months and never disappointed. Best barbershop on Kingston Rd!',
       author: 'Aliyaan Sheikh',
       photo: '/aliyaansheikh-test.avif',
       location: 'Scarborough'
@@ -101,56 +99,53 @@ const Reviews = () => {
   }
 
   return (
-    <section id="reviews" className="reviews luxury-reviews" ref={sectionRef}>
+    <section id="reviews" className="reviews modern-luxury-reviews" ref={sectionRef}>
       <div className="container-wide">
         <div className="section-header centered">
-          <p className="section-subtitle">Client Testimonials</p>
-          <h2>Trusted by Toronto's Elite</h2>
+          <p className="section-subtitle">Testimonials</p>
+          <h2>What Our Clients<br />Say</h2>
         </div>
 
-        <div className="reviews-carousel-wrapper">
+        {/* Horizontal Reel - Oversized Minimal Cards */}
+        <div className="reviews-reel-wrapper">
           <button
-            className="carousel-nav carousel-prev"
+            className="reel-nav reel-prev"
             onClick={prevReview}
             aria-label="Previous review"
           >
-            ‹
+            ←
           </button>
 
-          <div className="reviews-carousel-container">
-            <div className="reviews-carousel" ref={carouselRef}>
+          <div className="reviews-reel-container">
+            <div className="reviews-reel" ref={carouselRef}>
               {reviews.map((review, index) => (
                 <motion.div
                   key={index}
-                  className="review-card luxury-review-card"
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ 
-                    opacity: index === currentIndex ? 1 : 0.6,
-                    scale: index === currentIndex ? 1 : 0.95
-                  }}
-                  transition={{ duration: 0.5 }}
+                  className="review-card-minimal"
+                  initial={{ opacity: 0.4 }}
+                  animate={{ opacity: index === currentIndex ? 1 : 0.6 }}
+                  transition={{ duration: 0.6 }}
                 >
-                  <div className="review-photo-wrapper">
-                    {review.photo && (
-                      <img 
-                        src={review.photo} 
-                        alt={review.author}
-                        className="review-photo"
-                        loading="lazy"
-                      />
-                    )}
-                    <div className="review-photo-overlay" />
+                  <div className="review-photo-minimal">
+                    <img 
+                      src={review.photo} 
+                      alt={review.author}
+                      loading="lazy"
+                      onError={(e) => {
+                        e.target.src = 'https://via.placeholder.com/200/1a1a1a/c9a86a?text=Client'
+                      }}
+                    />
                   </div>
                   
-                  <div className="review-content">
-                    <div className="review-stars">{review.stars}</div>
-                    <blockquote className="review-text">
-                      "{review.text}"
-                    </blockquote>
-                    <div className="review-author-info">
-                      <cite className="review-author">{review.author}</cite>
-                      <span className="review-location">{review.location}</span>
-                    </div>
+                  <div className="review-stars-minimal">{review.stars}</div>
+                  
+                  <blockquote className="review-quote-serif">
+                    {review.text}
+                  </blockquote>
+                  
+                  <div className="review-author-minimal">
+                    <cite>{review.author}</cite>
+                    <span className="review-location-minimal">{review.location}</span>
                   </div>
                 </motion.div>
               ))}
@@ -158,14 +153,15 @@ const Reviews = () => {
           </div>
 
           <button
-            className="carousel-nav carousel-next"
+            className="reel-nav reel-next"
             onClick={nextReview}
             aria-label="Next review"
           >
-            ›
+            →
           </button>
         </div>
 
+        {/* Indicators */}
         <div className="reviews-indicators">
           {reviews.map((_, index) => (
             <button
@@ -175,19 +171,6 @@ const Reviews = () => {
               aria-label={`Go to review ${index + 1}`}
             />
           ))}
-        </div>
-
-        <div className="reviews-cta">
-          <motion.a
-            href="https://g.page/r/XXXXX/review"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-outline"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Read More Reviews
-          </motion.a>
         </div>
       </div>
     </section>

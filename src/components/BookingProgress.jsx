@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import './BookingProgress.css'
 
-const BookingProgress = ({ isOpen, onClose }) => {
+const BookingProgress = ({ onClose }) => {
   const [currentStep, setCurrentStep] = useState(1)
   const [selectedService, setSelectedService] = useState('')
   const [selectedBarber, setSelectedBarber] = useState('')
@@ -52,23 +52,21 @@ const BookingProgress = ({ isOpen, onClose }) => {
   }
 
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <>
-          <motion.div
-            className="booking-progress-overlay"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={onClose}
-          />
-          <motion.div
-            className="booking-progress-modal"
-            initial={{ opacity: 0, scale: 0.9, y: 50 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 50 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-          >
+    <>
+      <motion.div
+        className="booking-progress-overlay"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        onClick={onClose}
+      />
+      <motion.div
+        className="booking-progress-modal"
+        initial={{ opacity: 0, scale: 0.9, y: 50 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.9, y: 50 }}
+        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+      >
             <button
               className="booking-progress-close"
               onClick={onClose}
@@ -233,10 +231,8 @@ const BookingProgress = ({ isOpen, onClose }) => {
                 </motion.button>
               )}
             </div>
-          </motion.div>
-        </>
-      )}
-    </AnimatePresence>
+      </motion.div>
+    </>
   )
 }
 

@@ -103,9 +103,12 @@ const Gallery = () => {
     <>
       <section id="gallery" className="gallery" ref={sectionRef}>
         <div className="container">
-        <div className="section-header">
-          <h2>Gallery</h2>
-          <p className="section-subtitle">See our work in action</p>
+        <div className="section-header centered">
+          <p className="section-subtitle">Our Work</p>
+          <h2>Every Cut Tells a Story</h2>
+          <p className="section-description">
+            Witness the artistry, precision, and transformation that happens in our chair every day.
+          </p>
         </div>
           <div className="gallery-grid">
             {images.map((image, index) => (

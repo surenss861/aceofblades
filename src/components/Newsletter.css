@@ -1,19 +1,46 @@
 .newsletter {
-    padding: 4rem 0;
-    background: linear-gradient(135deg, var(--primary-color) 0%, #2d2d2d 100%);
-    color: var(--bg-white);
+    padding: var(--space-2xl) 0;
+    background-color: var(--matte-black);
+    color: var(--off-white-cream);
     text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.newsletter::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 30% 50%, rgba(201, 168, 106, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 70% 50%, rgba(201, 168, 106, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.newsletter-content {
+    position: relative;
+    z-index: 1;
 }
 
 .newsletter-content h2 {
-    color: var(--bg-white);
-    margin-bottom: 1rem;
+    color: var(--off-white-cream);
+    margin-bottom: var(--space-md);
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 500;
 }
 
 .newsletter-content p {
-    color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 2rem;
+    color: var(--muted-gold);
+    margin-bottom: var(--space-xl);
     font-size: 1.125rem;
+    font-weight: 300;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .newsletter-form {
@@ -27,33 +54,36 @@
 .newsletter-input {
     flex: 1;
     min-width: 250px;
-    padding: 1rem;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 8px;
+    padding: var(--space-md) var(--space-lg);
+    border: 1px solid rgba(201, 168, 106, 0.3);
+    border-radius: 0;
     font-size: 1rem;
     font-family: var(--font-primary);
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--bg-white);
-    transition: all 0.3s ease;
+    background: rgba(26, 26, 26, 0.6);
+    backdrop-filter: blur(10px);
+    color: var(--off-white-cream);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 300;
 }
 
 .newsletter-input::placeholder {
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--muted-gold);
+    opacity: 0.6;
 }
 
 .newsletter-input:focus {
     outline: none;
-    border-color: var(--accent-color);
-    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--champagne-gold);
+    background: rgba(26, 26, 26, 0.8);
 }
 
 .newsletter-success {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
-    color: var(--accent-color);
-    font-weight: 600;
+    gap: var(--space-sm);
+    color: var(--champagne-gold);
+    font-weight: 400;
     font-size: 1.125rem;
 }
 

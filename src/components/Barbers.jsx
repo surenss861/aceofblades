@@ -11,11 +11,11 @@ const Barbers = () => {
     gsap.registerPlugin(ScrollTrigger)
 
     const header = sectionRef.current?.querySelector('.section-header')
-    const cards = gsap.utils.toArray('.barber-card')
+    const items = gsap.utils.toArray('.barber-spotlight-item')
     const scrollTriggers = []
     
     if (header) {
-      gsap.set(header, { opacity: 0, y: 30 })
+      gsap.set(header, { opacity: 0.4, y: 20 })
       const headerSt = ScrollTrigger.create({
         trigger: sectionRef.current,
         start: 'top 80%',
@@ -23,7 +23,7 @@ const Barbers = () => {
           gsap.to(header, {
             opacity: 1,
             y: 0,
-            duration: 0.8,
+            duration: 1.2,
             ease: 'power2.out'
           })
         }
@@ -31,20 +31,26 @@ const Barbers = () => {
       scrollTriggers.push(headerSt)
     }
     
-    cards.forEach((card, index) => {
-      gsap.set(card, { opacity: 0, y: 50, scale: 0.9 })
+    items.forEach((item, index) => {
+      const image = item.querySelector('.barber-portrait')
+      const content = item.querySelector('.barber-spotlight-content')
+      
+      gsap.set([image, content], { 
+        opacity: 0.4,
+        y: 20
+      })
       
       const st = ScrollTrigger.create({
-        trigger: card,
-        start: 'top 85%',
+        trigger: item,
+        start: 'top 75%',
         onEnter: () => {
-          gsap.to(card, {
+          gsap.to([image, content], {
             opacity: 1,
             y: 0,
-            scale: 1,
-            duration: 0.8,
+            duration: 1.2,
             ease: 'power2.out',
-            delay: index * 0.15
+            stagger: 0.15,
+            delay: index * 0.2
           })
         }
       })
@@ -60,25 +66,28 @@ const Barbers = () => {
 
   const barbers = [
     {
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop',
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=1000&fit=crop&q=90',
       name: 'Ace',
       title: 'Owner & Master Barber',
-      bio: 'With over 10 years of experience, Ace specializes in precision fades and modern styling. Known for his attention to detail and ability to bring any vision to life.',
-      specialty: 'Fades, scissor work, creative designs'
+      experience: '10+ Years',
+      bio: 'The visionary behind Ace of Blades. Ace brings over a decade of mastery to every cut, specializing in precision fades that have become legendary in Scarborough.',
+      specialty: 'Precision Fades • Creative Designs • Scissor Mastery'
     },
     {
-      image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop',
+      image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=800&h=1000&fit=crop&q=90',
       name: 'Chris',
       title: 'Senior Barber',
-      bio: 'Chris brings a passion for classic cuts and traditional barbering techniques. His expertise in hot towel shaves and beard grooming has made him a customer favorite.',
-      specialty: 'Classic cuts, hot towel shaves, beard styling'
+      experience: '8+ Years',
+      bio: 'A master of the classics. Chris combines traditional barbering techniques with modern precision, delivering flawless hot towel shaves and impeccable beard work.',
+      specialty: 'Hot Towel Shaves • Beard Mastery • Classic Cuts'
     },
     {
-      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop',
+      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=800&h=1000&fit=crop&q=90',
       name: 'Dhan',
       title: 'Expert Barber',
-      bio: 'Dhan excels in contemporary styles and creative designs. His friendly personality and technical skill make every visit enjoyable and results consistently impressive.',
-      specialty: 'Modern styles, creative designs, precision lineups'
+      experience: '6+ Years',
+      bio: 'The creative force. Dhan excels at bringing your vision to life with contemporary styles and artistic flair. Every cut is a collaboration.',
+      specialty: 'Modern Styles • Creative Designs • Color Work'
     }
   ]
 
@@ -90,55 +99,56 @@ const Barbers = () => {
   }
 
   return (
-    <section id="barbers" className="barbers" ref={sectionRef}>
-      <div className="container">
-        <div className="section-header">
-          <h2>Choose Your Barber</h2>
-          <p className="section-subtitle">Meet our skilled team of professionals</p>
+    <section id="barbers" className="barbers modern-luxury-barbers" ref={sectionRef}>
+      <div className="container-wide">
+        <div className="section-header centered">
+          <p className="section-subtitle">The Artists</p>
+          <h2>Master Barbers<br />Behind Every Cut</h2>
         </div>
-        <div className="barbers-grid">
+
+        <div className="barbers-spotlight-list">
           {barbers.map((barber, index) => (
-            <motion.div
+            <div
               key={index}
-              className="barber-card"
-              whileHover={{ y: -5, scale: 1.02 }}
-              transition={{ type: 'spring', stiffness: 300 }}
+              className="barber-spotlight-item"
             >
-              <motion.div
-                className="barber-image"
-                whileHover={{ rotate: 5, scale: 1.05 }}
-                transition={{ type: 'spring', stiffness: 200 }}
-              >
-                <img 
-                  src={barber.image} 
-                  alt={`${barber.name} - ${barber.title}`} 
-                  loading="lazy"
-                  onError={(e) => {
-                    e.target.src = `https://via.placeholder.com/400x400/1a1a1a/d4af37?text=${encodeURIComponent(barber.name)}`
-                  }}
-                />
-              </motion.div>
-              <div className="barber-info">
-                <h3>{barber.name}</h3>
+              <div className="barber-spotlight-background" />
+              
+              <div className="barber-portrait-wrapper">
+                <div className="barber-portrait">
+                  <img 
+                    src={barber.image} 
+                    alt={barber.name}
+                    loading="lazy"
+                  />
+                  {/* Gold ring frame */}
+                  <div className="barber-ring-frame" />
+                  {/* Cinematic spotlight effect */}
+                  <div className="barber-spotlight-effect" />
+                </div>
+              </div>
+
+              <div className="barber-spotlight-content">
+                <div className="barber-experience-label">{barber.experience}</div>
+                <h3 className="barber-name">{barber.name}</h3>
                 <p className="barber-title">{barber.title}</p>
                 <p className="barber-bio">{barber.bio}</p>
-                <p className="barber-specialty">
-                  <strong>Specializes in:</strong> {barber.specialty}
-                </p>
+                <div className="barber-specialty">{barber.specialty}</div>
+                
                 <motion.a
                   href="#book"
-                  className="btn btn-small"
+                  className="barber-cta-link"
                   onClick={(e) => {
                     e.preventDefault()
                     scrollToSection('#book')
                   }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={{ x: 5 }}
                 >
                   Book with {barber.name}
+                  <span className="arrow">→</span>
                 </motion.a>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
@@ -147,4 +157,3 @@ const Barbers = () => {
 }
 
 export default Barbers
-
