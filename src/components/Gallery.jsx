@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import './Gallery.css'
 
 const Gallery = () => {
   const sectionRef = useRef(null)
@@ -125,8 +124,8 @@ const Gallery = () => {
                   alt={`Gallery image ${index + 1}`} 
                   loading="lazy"
                   onError={(e) => {
-                    // Fallback if image fails to load
-                    e.target.src = `https://via.placeholder.com/600x600/1a1a1a/d4af37?text=Image+${index + 1}`
+                    // Hide image if it fails to load
+                    e.target.style.display = 'none'
                   }}
                 />
               </motion.div>

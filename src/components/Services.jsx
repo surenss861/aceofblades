@@ -2,7 +2,6 @@ import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import './Services.css'
 
 const Services = () => {
   const sectionRef = useRef(null)
@@ -14,8 +13,8 @@ const Services = () => {
     const scrollTriggers = []
     
     items.forEach((item, index) => {
-      const image = item.querySelector('.service-image')
-      const content = item.querySelector('.service-content')
+      const image = item.querySelector('.service-image-full')
+      const content = item.querySelector('.service-content-editorial')
       
       // Slow, intentional fade + slide animations
       gsap.set([image, content], { 
@@ -48,32 +47,32 @@ const Services = () => {
 
   const services = [
     {
-      image: 'https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=1400&h=900&fit=crop&q=90',
-      title: 'Precision Haircuts',
-      description: 'Every cut is a masterpiece. Our barbers combine traditional techniques with modern artistry to deliver sharp, clean results that complement your unique style and facial structure.',
-      price: 'From $45',
-      features: ['Custom Consultation', 'Premium Products', 'Expert Styling']
+      image: '/haircut-beard.avif',
+      title: 'Haircut + Beard',
+      description: 'The complete transformation. A precision haircut paired with expert beard grooming for the ultimate gentleman\'s look. Every detail is crafted to perfection.',
+      price: 'From $65',
+      features: ['Full Haircut', 'Beard Trim & Shape', 'Premium Styling Products', 'Hot Towel Treatment']
     },
     {
-      image: 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1400&h=900&fit=crop&q=90',
-      title: 'Beard Mastery',
-      description: 'From precision trims to full beard transformations. We shape, style, and maintain your facial hair with the attention to detail that defines luxury grooming.',
-      price: 'From $35',
-      features: ['Hot Towel Treatment', 'Premium Oils', 'Custom Shaping']
-    },
-    {
-      image: 'https://images.unsplash.com/photo-1585747860715-2ba37e788b7d?w=1400&h=900&fit=crop&q=90',
-      title: 'Creative Designs',
+      image: '/design.webp',
+      title: 'Design',
       description: 'Express your individuality with custom patterns, logos, and artistic designs. Our barbers are artists who turn your vision into wearable art.',
       price: 'From $55',
-      features: ['Custom Artwork', 'Precision Tools', 'Unique Patterns']
+      features: ['Custom Artwork', 'Precision Tools', 'Unique Patterns', 'Creative Consultation']
     },
     {
-      image: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=1400&h=900&fit=crop&q=90',
-      title: 'Hot Towel Shave',
-      description: 'Experience the timeless luxury of a traditional straight razor shave. Hot towels, premium products, and masterful technique for the smoothest shave of your life.',
-      price: 'From $40',
-      features: ['Straight Razor', 'Hot Towels', 'Premium Balms']
+      image: '/beardtrim-lineup.avif',
+      title: 'Beard Trim / Lineup',
+      description: 'From precision trims to flawless lineups. We shape, style, and maintain your facial hair with the attention to detail that defines luxury grooming.',
+      price: 'From $35',
+      features: ['Precision Trim', 'Clean Lineup', 'Premium Oils', 'Hot Towel Treatment']
+    },
+    {
+      image: '/kidscut.avif',
+      title: 'Kids Cut',
+      description: 'A gentle, patient approach to children\'s haircuts. We make the experience comfortable and fun while delivering sharp, clean results your little one will love.',
+      price: 'From $30',
+      features: ['Child-Friendly Environment', 'Patient Styling', 'Fun Experience', 'Quality Cut']
     }
   ]
 
@@ -101,7 +100,7 @@ const Services = () => {
                 key={index}
                 className={`service-editorial-item ${isEven ? '' : 'reverse'}`}
               >
-                <div className="service-image">
+                <div className="service-image-full">
                   <img 
                     src={service.image} 
                     alt={service.title}
@@ -110,33 +109,32 @@ const Services = () => {
                   <div className="service-image-overlay" />
                 </div>
                 
-                <div className="service-content">
-                  <div className="service-number">0{index + 1}</div>
-                  <h3>{service.title}</h3>
-                  <p>{service.description}</p>
+                <div className="service-content-editorial">
+                  <div className="service-number-large">0{index + 1}</div>
+                  <h3 className="service-title-editorial">{service.title}</h3>
+                  <div className="service-gold-divider" />
+                  <p className="service-description-editorial">{service.description}</p>
                   
-                  <div className="service-features">
+                  <div className="service-features-editorial">
                     {service.features.map((feature, idx) => (
-                      <div key={idx} className="service-feature-item">
-                        <span className="feature-separator">—</span>
+                      <div key={idx} className="service-feature-item-editorial">
+                        <span className="feature-separator-gold">—</span>
                         <span>{feature}</span>
                       </div>
                     ))}
                   </div>
                   
-                  <div className="service-price">{service.price}</div>
-                  
                   <motion.a
                     href="#book"
-                    className="btn btn-outline"
+                    className="btn btn-primary service-cta-editorial"
                     onClick={(e) => {
                       e.preventDefault()
                       scrollToSection('#book')
                     }}
-                    whileHover={{ scale: 1.02 }}
+                    whileHover={{ scale: 1.02, x: 5 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    Book This Service
+                    Book Now
                   </motion.a>
                 </div>
               </div>

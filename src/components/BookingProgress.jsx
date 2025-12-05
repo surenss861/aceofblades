@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import './BookingProgress.css'
 
 const BookingProgress = ({ onClose }) => {
   const [currentStep, setCurrentStep] = useState(1)

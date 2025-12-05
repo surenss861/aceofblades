@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { gsap } from 'gsap'
-import './Navbar.css'
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)

@@ -2,7 +2,6 @@ import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import './BeforeAfter.css'
 
 const BeforeAfter = () => {
   const sectionRef = useRef(null)
@@ -106,7 +105,7 @@ const BeforeAfter = () => {
                     alt={`Before - ${item.title}`}
                     loading="lazy"
                     onError={(e) => {
-                      e.target.src = `https://via.placeholder.com/600x600/1a1a1a/d4af37?text=Before`
+                      e.target.style.display = 'none'
                     }}
                   />
                   <span className="before-after-label before">Before</span>
@@ -118,7 +117,7 @@ const BeforeAfter = () => {
                     alt={`After - ${item.title}`}
                     loading="lazy"
                     onError={(e) => {
-                      e.target.src = `https://via.placeholder.com/600x600/1a1a1a/d4af37?text=After`
+                      e.target.style.display = 'none'
                     }}
                   />
                   <span className="before-after-label after">After</span>

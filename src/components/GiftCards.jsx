@@ -3,7 +3,6 @@ import { motion } from 'framer-motion'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useEffect, useRef } from 'react'
-import './GiftCards.css'
 
 const GiftCards = () => {
   const sectionRef = useRef(null)

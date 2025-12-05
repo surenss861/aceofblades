@@ -8,7 +8,6 @@ import Hero from './components/Hero'
 import TrustBadges from './components/TrustBadges'
 import About from './components/About'
 import Services from './components/Services'
-import Packages from './components/Packages'
 import BeforeAfter from './components/BeforeAfter'
 import Barbers from './components/Barbers'
 import Reviews from './components/Reviews'
@@ -27,7 +26,6 @@ import ReferralProgram from './components/ReferralProgram'
 import SocialFeed from './components/SocialFeed'
 import ClientStories from './components/ClientStories'
 import Footer from './components/Footer'
-import './App.css'
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger)
@@ -69,7 +67,6 @@ function App() {
       <TrustBadges />
       <About />
       <Services />
-      <Packages />
       <BeforeAfter />
       <Barbers />
       <Reviews />

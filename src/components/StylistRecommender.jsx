@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import './StylistRecommender.css'
 
 const StylistRecommender = () => {
   const [isOpen, setIsOpen] = useState(false)

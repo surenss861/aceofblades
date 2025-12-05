@@ -3,7 +3,6 @@ import { motion } from 'framer-motion'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { initMagneticButton } from '../utils/magneticButton'
-import './Hero.css'
 
 // Preload images
 const preloadImages = (urls) => {
@@ -15,17 +14,14 @@ const preloadImages = (urls) => {
 
 const Hero = () => {
   const heroRef = useRef(null)
-  const titleRef = useRef(null)
-  const underlineRef = useRef(null)
-  const subtitleRef = useRef(null)
+  const textRef = useRef(null)
   const ctaRef = useRef(null)
   const magneticBtnRef = useRef(null)
   const [currentSlide, setCurrentSlide] = useState(0)
   
   const slides = [
-    'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=1920&h=1080&fit=crop&q=90',
-    'https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=1920&h=1080&fit=crop&q=90',
-    'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1920&h=1080&fit=crop&q=90'
+    '/herobg1.jpeg',
+    '/herobg2.jpeg'
   ]
 
   useEffect(() => {
@@ -34,66 +30,108 @@ const Hero = () => {
     // Preload all hero images
     preloadImages(slides)
 
-    // Slow, intentional cinematic entrance animation
+    // Set initial state - make sure content is visible
+    if (textRef.current && ctaRef.current) {
+      gsap.set([textRef.current, ctaRef.current], { opacity: 1, y: 0 })
+    }
+
+    // Slow zoom on hero image (cinematic entrance)
+    gsap.from('.hero-slide.active', {
+      scale: 1.08,
+      duration: 3,
+      ease: 'power2.out'
+    })
+
+    // Luxury fade-up animation with gold underline
     const tl = gsap.timeline({ delay: 0.5 })
     
-    // Hero image scales from 1.05 → 1.0 (cinematic)
-    gsap.from('.hero-slide.active', {
-      scale: 1.05,
-      duration: 2,
-      ease: 'power2.out'
-    })
+    if (textRef.current) {
+      const line1 = textRef.current.querySelector('.hero-headline-line1')
+      const line2 = textRef.current.querySelector('.hero-headline-line2')
+      const underline = textRef.current.querySelector('.hero-gold-underline')
+      
+      if (line1) {
+        gsap.set(line1, { opacity: 0, y: 40 })
+        tl.to(line1, {
+          opacity: 1,
+          y: 0,
+          duration: 1.5,
+          ease: 'power3.out'
+        })
+      }
+      
+      if (line2) {
+        gsap.set(line2, { opacity: 0, y: 30 })
+        tl.to(line2, {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          ease: 'power3.out'
+        }, '-=0.8')
+      }
+      
+      if (underline) {
+        gsap.set(underline, { scaleX: 0, opacity: 0 })
+        tl.to(underline, {
+          scaleX: 1,
+          opacity: 1,
+          duration: 1,
+          ease: 'power2.out',
+          transformOrigin: 'left center'
+        }, '-=0.5')
+      }
+    }
     
-    // Title fades in from 20px lower (luxury motion)
-    tl.from(titleRef.current, {
-      opacity: 0,
-      y: 20,
-      duration: 1.5,
-      ease: 'power2.out'
-    })
-    // Gold accent underline draws in
-    .from(underlineRef.current, {
-      scaleX: 0,
-      duration: 1.2,
-      ease: 'power2.out',
-      transformOrigin: 'left'
-    }, '-=1')
-    .from(subtitleRef.current, {
-      opacity: 0.4,
-      y: 10,
-      duration: 1.2,
-      ease: 'power2.out'
-    }, '-=0.8')
-    .from(ctaRef.current, {
-      opacity: 0.4,
-      y: 10,
-      duration: 1,
-      ease: 'power2.out'
-    }, '-=0.6')
+    if (ctaRef.current) {
+      gsap.set(ctaRef.current, { opacity: 0, y: 25 })
+      tl.to(ctaRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1.2,
+        ease: 'power3.out'
+      }, '-=0.6')
+    }
 
-    // Parallax scroll effect (2-3% movement - subtle and cinematic)
+    // Parallax mouse-follow lighting effect
+    const handleMouseMove = (e) => {
+      const { clientX, clientY } = e
+      const { innerWidth, innerHeight } = window
+      const xPercent = (clientX / innerWidth) * 100
+      const yPercent = (clientY / innerHeight) * 100
+      
+      gsap.to('.hero-slide.active', {
+        backgroundPosition: `${xPercent}% ${yPercent}%`,
+        duration: 2,
+        ease: 'power1.out'
+      })
+    }
+
+    window.addEventListener('mousemove', handleMouseMove)
+
+    // Slow parallax scroll effect - luxury feel
     ScrollTrigger.create({
       trigger: heroRef.current,
       start: 'top top',
       end: 'bottom top',
-      scrub: 1.5,
+      scrub: 2,
       onUpdate: (self) => {
         const progress = self.progress
-        // Subtle 2-3% parallax movement
+        // Slow, cinematic parallax on hero image
         gsap.to('.hero-slide.active', {
-          y: progress * 30, // 30px max = ~3% of 1000px viewport
+          y: progress * 20,
+          scale: 1 + progress * 0.02,
           ease: 'none'
         })
-        // Content fades slightly as you scroll
+        // Subtle content movement
         gsap.to('.hero-content', {
-          opacity: 1 - progress * 0.3,
-          y: progress * 20,
+          y: progress * 15,
           ease: 'none'
         })
       }
     })
 
     return () => {
+      window.removeEventListener('mousemove', handleMouseMove)
       ScrollTrigger.getAll().forEach(st => {
         if (st.trigger === heroRef.current) {
           st.kill()
@@ -111,10 +149,10 @@ const Hero = () => {
   }, [])
 
   useEffect(() => {
-    // Slow auto-slide (luxury timing)
+    // Slow auto-slide
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length)
-    }, 8000) // Slower for luxury feel
+    }, 8000)
 
     return () => clearInterval(interval)
   }, [slides.length])
@@ -138,66 +176,56 @@ const Hero = () => {
               backgroundImage: `url(${slide})`,
             }}
           >
-            {/* Cinematic overlay with vignette */}
             <div className="hero-overlay" />
-            {/* Soft grain texture */}
             <div className="hero-grain" />
           </div>
         ))}
       </div>
 
-      {/* Editorial content layout */}
-      <div className="container-wide">
+      {/* Right-side gradient for text readability */}
+      <div className="hero-text-gradient" />
+      
+      {/* Brand signature elements */}
+      <div className="hero-brand-pattern" />
+      
+      {/* Hero Content - Bottom Right Positioning */}
+      <div className="hero-content-wrapper">
         <div className="hero-content">
-          <div className="hero-text-wrapper">
-            <motion.p 
-              className="hero-label"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.8, duration: 1 }}
+          <div className="hero-headline-wrapper" ref={textRef}>
+            <h1 className="hero-headline-line1">Precision meets artistry.</h1>
+            <h2 className="hero-headline-line2">Crafted for Toronto's modern gentleman.</h2>
+            <div className="hero-gold-underline" />
+          </div>
+          
+          <div className="hero-cta-wrapper" ref={ctaRef}>
+            <motion.a
+              ref={magneticBtnRef}
+              href="#book"
+              className="btn btn-primary magnetic-btn hero-cta-primary"
+              onClick={(e) => {
+                e.preventDefault()
+                scrollToSection('#book')
+              }}
+              whileHover={{ scale: 1.02, boxShadow: '0 8px 32px rgba(201, 168, 106, 0.4)' }}
+              whileTap={{ scale: 0.98 }}
             >
-              EST. 2020
-            </motion.p>
-            
-            <h1 className="hero-title" ref={titleRef}>
-              Where Every Cut<br />
-              <span className="accent-text">Tells Your Story</span>
-            </h1>
-            
-            {/* Gold accent underline */}
-            <div className="hero-underline" ref={underlineRef} />
-            
-            <p className="hero-subtitle" ref={subtitleRef}>
-              Precision meets artistry. Where Toronto's most discerning gentlemen trust their transformation.
-            </p>
-            
-            <div className="hero-cta" ref={ctaRef}>
-              <motion.a
-                ref={magneticBtnRef}
-                href="#book"
-                className="btn btn-primary magnetic-btn"
-                onClick={(e) => {
-                  e.preventDefault()
-                  scrollToSection('#book')
-                }}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                Reserve Your Appointment
-              </motion.a>
-            </div>
+              Reserve Your Appointment
+            </motion.a>
+            <motion.a
+              href="#barbers"
+              className="btn btn-outline-gold hero-cta-secondary"
+              onClick={(e) => {
+                e.preventDefault()
+                scrollToSection('#barbers')
+              }}
+              whileHover={{ scale: 1.02, borderColor: 'var(--muted-gold)' }}
+              whileTap={{ scale: 0.98 }}
+            >
+              Find Your Stylist
+            </motion.a>
           </div>
         </div>
       </div>
-
-      {/* Scroll indicator - minimal */}
-      <motion.div 
-        className="hero-scroll-indicator"
-        animate={{ y: [0, 8, 0] }}
-        transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
-      >
-        <div className="scroll-line" />
-      </motion.div>
     </section>
   )
 }

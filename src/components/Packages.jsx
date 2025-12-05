@@ -2,7 +2,6 @@ import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import './Packages.css'
 
 const Packages = () => {
   const sectionRef = useRef(null)
@@ -116,7 +115,6 @@ const Packages = () => {
       <div className="container-wide">
         <div className="section-header centered">
           <p className="section-subtitle">Premium Packages</p>
-          <h2>Complete Grooming Experiences</h2>
           <p className="section-description">
             Curated packages designed to elevate your entire grooming routine
           </p>

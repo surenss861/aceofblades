@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import './ClientStories.css'
 
 const ClientStories = () => {
   const sectionRef = useRef(null)

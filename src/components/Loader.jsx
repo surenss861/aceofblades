@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { gsap } from 'gsap'
-import './Loader.css'
 
 const Loader = () => {
   const [isLoading, setIsLoading] = useState(true)

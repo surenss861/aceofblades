@@ -4,7 +4,6 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useEffect, useRef } from 'react'
 import BookingProgress from './BookingProgress'
-import './Booking.css'
 
 const Booking = () => {
   const sectionRef = useRef(null)
@@ -104,7 +103,7 @@ const Booking = () => {
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: 'power3.out' }}
+              transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
             >
               <div className="booking-card-header">
                 <h3>Book Your Appointment</h3>

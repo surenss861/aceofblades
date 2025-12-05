@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import './Newsletter.css'
 
 const Newsletter = () => {
   const [email, setEmail] = useState('')

@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { gsap } from 'gsap'
-import './EmailCapture.css'
 
 const EmailCapture = () => {
   const [isOpen, setIsOpen] = useState(false)

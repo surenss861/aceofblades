@@ -2,7 +2,6 @@ import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import './About.css'
 
 const About = () => {
   const sectionRef = useRef(null)
@@ -53,60 +52,56 @@ const About = () => {
   }, [])
 
   return (
-    <section id="about" className="about luxury-about" ref={sectionRef}>
-      <div className="about-background-decoration" />
-      <div className="container-wide">
-        <div className="about-content-wrapper">
-          <div className="about-image-section" ref={imageRef}>
-            <div className="about-image">
-              <img 
-                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&h=1000&fit=crop&q=90" 
-                alt="Ace of Blades Barbershop Interior"
-                loading="lazy"
-              />
-              <div className="about-image-overlay" />
-              <div className="about-image-badge">
-                <span className="badge-number">4+</span>
-                <span className="badge-label">Years of Excellence</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="about-text-section">
-            <div className="section-header asymmetric">
+    <section id="about" className="about luxury-about-editorial" ref={sectionRef}>
+      <div className="container-narrow">
+        {/* Editorial Layout with Gold Vertical Line */}
+        <div className="about-editorial-wrapper">
+          <div className="about-gold-line" />
+          
+          <div className="about-editorial-content">
+            <div className="about-header-editorial">
               <p className="section-subtitle">Our Story</p>
-              <h2>More Than a Cut.<br />A Transformation.</h2>
+              <h2 className="about-title-editorial">
+                More Than a Cut.<br />
+                <span className="about-title-accent">A Transformation.</span>
+              </h2>
             </div>
             
-            <div className="about-text" ref={textRef}>
-              <p className="lead">
-                At <strong className="accent-text">2207 Kingston Rd</strong>, we've built something special. This isn't just a barbershop—it's where confidence is crafted, one precise line at a time.
+            <div className="about-text-editorial" ref={textRef}>
+              <p className="about-pull-quote">
+                "At <strong>2207 Kingston Rd</strong>, we've built something special. This isn't just a barbershop—it's where confidence is crafted, one precise line at a time."
               </p>
+              
               <p>
                 <strong className="accent-text">100% Talent. 0% Pretentious.</strong> That's our promise. We've earned our reputation by delivering razor-sharp fades, flawless lineups, and premium grooming services in an atmosphere that feels both luxurious and genuinely welcoming.
               </p>
+              
               <p>
                 Our master barbers—<strong>Ace, Chris, and Dhan</strong>—bring decades of combined expertise and an unshakeable passion for perfection. Every cut is a conversation. Every style is a statement. Every client leaves feeling unstoppable.
               </p>
+              
               <p>
                 We believe your look should match your ambition. That's why we've created a space where you can relax, recharge, and walk out looking like the best version of yourself. <strong>Your transformation starts here.</strong>
               </p>
             </div>
+          </div>
+        </div>
 
-            <div className="about-stats">
-              <div className="stat-item">
-                <div className="stat-number">150+</div>
-                <div className="stat-label">Five-Star Reviews</div>
-              </div>
-              <div className="stat-item">
-                <div className="stat-number">4+</div>
-                <div className="stat-label">Years Serving Toronto</div>
-              </div>
-              <div className="stat-item">
-                <div className="stat-number">3</div>
-                <div className="stat-label">Master Barbers</div>
-              </div>
-            </div>
+        {/* Stats Section - Editorial Style */}
+        <div className="about-stats-editorial">
+          <div className="stat-item-editorial">
+            <div className="stat-number-editorial">150+</div>
+            <div className="stat-label-editorial">Five-Star Reviews</div>
+          </div>
+          <div className="stat-divider" />
+          <div className="stat-item-editorial">
+            <div className="stat-number-editorial">4+</div>
+            <div className="stat-label-editorial">Years Serving Toronto</div>
+          </div>
+          <div className="stat-divider" />
+          <div className="stat-item-editorial">
+            <div className="stat-number-editorial">3</div>
+            <div className="stat-label-editorial">Master Barbers</div>
           </div>
         </div>
       </div>

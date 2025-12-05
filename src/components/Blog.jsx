@@ -2,7 +2,6 @@ import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import './Blog.css'
 
 const Blog = () => {
   const sectionRef = useRef(null)
@@ -105,7 +104,7 @@ const Blog = () => {
                   alt={post.title} 
                   loading="lazy"
                   onError={(e) => {
-                    e.target.src = `https://via.placeholder.com/600x400/1a1a1a/d4af37?text=${encodeURIComponent(post.title)}`
+                    e.target.style.display = 'none'
                   }}
                 />
                 <div className="blog-category">{post.category}</div>

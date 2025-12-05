@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import './StickyBooking.css'
 
 const StickyBooking = () => {
   const [isVisible, setIsVisible] = useState(false)
@@ -48,10 +47,10 @@ const StickyBooking = () => {
               e.preventDefault()
               scrollToSection('#book')
             }}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
+            whileHover={{ scale: 1.1, rotate: 5 }}
+            whileTap={{ scale: 0.95 }}
           >
-            Book Now
+            <span className="sticky-booking-icon">✂</span>
           </motion.a>
         </motion.div>
       )}

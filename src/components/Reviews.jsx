@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import './Reviews.css'
 
 const Reviews = () => {
   const sectionRef = useRef(null)
@@ -132,7 +131,8 @@ const Reviews = () => {
                       alt={review.author}
                       loading="lazy"
                       onError={(e) => {
-                        e.target.src = 'https://via.placeholder.com/200/1a1a1a/c9a86a?text=Client'
+                        // Hide image if it fails to load
+                        e.target.style.display = 'none'
                       }}
                     />
                   </div>
