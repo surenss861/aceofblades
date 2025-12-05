@@ -1,0 +1,107 @@
+.packages {
+    padding: 6rem 0;
+    background-color: var(--bg-white);
+}
+
+.packages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.package-card {
+    background-color: var(--bg-light);
+    border-radius: 12px;
+    padding: 3rem 2rem;
+    text-align: center;
+    position: relative;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.package-card:hover {
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent-color);
+}
+
+.package-card.featured {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #2d2d2d 100%);
+    color: var(--bg-white);
+    border-color: var(--accent-color);
+}
+
+.package-card.featured h3,
+.package-card.featured .package-price {
+    color: var(--bg-white);
+}
+
+.package-badge {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--accent-color);
+    color: var(--bg-white);
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.package-card h3 {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.package-price {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    margin-bottom: 2rem;
+    font-family: var(--font-display);
+}
+
+.package-features {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 2rem;
+    padding: 0;
+}
+
+.package-features li {
+    padding: 0.75rem 0;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border-color);
+    font-size: 1.125rem;
+}
+
+.package-card.featured .package-features li {
+    color: rgba(255, 255, 255, 0.9);
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+.package-features li:last-child {
+    border-bottom: none;
+}
+
+@media (max-width: 768px) {
+    .packages-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .packages {
+        padding: 4rem 0;
+    }
+
+    .package-card {
+        padding: 2rem 1.5rem;
+    }
+}
+

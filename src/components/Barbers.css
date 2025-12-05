@@ -1,0 +1,69 @@
+.barbers {
+    padding: 6rem 0;
+    background-color: var(--bg-white);
+}
+
+.barbers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+}
+
+.barber-card {
+    text-align: center;
+}
+
+.barber-image {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid var(--accent-color);
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+}
+
+.barber-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.barber-info h3 {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.barber-title {
+    color: var(--accent-color);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-size: 1.125rem;
+}
+
+.barber-bio {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.barber-specialty {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .barbers-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .barbers {
+        padding: 4rem 0;
+    }
+}
+

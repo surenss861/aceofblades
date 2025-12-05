@@ -1,0 +1,11 @@
+/* App-specific styles */
+.App {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* Section spacing */
+section {
+    position: relative;
+}
+
