@@ -164,6 +164,7 @@ h1 {
     font-weight: 600;
     letter-spacing: -0.04em;
     line-height: 1.1;
+    font-family: var(--font-display);
 }
 
 h2 {
@@ -171,6 +172,7 @@ h2 {
     font-weight: 600;
     letter-spacing: -0.03em;
     line-height: 1.15;
+    font-family: var(--font-serif);
 }
 
 h3 {
@@ -178,6 +180,7 @@ h3 {
     font-weight: 600;
     letter-spacing: -0.02em;
     line-height: 1.2;
+    font-family: var(--font-serif);
 }
 
 p {
@@ -185,7 +188,8 @@ p {
     line-height: var(--line-height-body);
     letter-spacing: 0.02em;
     color: var(--muted-gold);
-    font-weight: 300;
+    font-weight: var(--font-weight-body);
+    font-family: var(--font-primary);
 }
 
 .section-header {

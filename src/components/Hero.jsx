@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { initMagneticButton } from '../utils/magneticButton'
 import './Hero.css'
 
 // Preload images
@@ -18,6 +19,7 @@ const Hero = () => {
   const underlineRef = useRef(null)
   const subtitleRef = useRef(null)
   const ctaRef = useRef(null)
+  const magneticBtnRef = useRef(null)
   const [currentSlide, setCurrentSlide] = useState(0)
   
   const slides = [
@@ -100,6 +102,14 @@ const Hero = () => {
     }
   }, [])
 
+  // Initialize magnetic button effect
+  useEffect(() => {
+    if (magneticBtnRef.current) {
+      const cleanup = initMagneticButton(magneticBtnRef.current)
+      return cleanup
+    }
+  }, [])
+
   useEffect(() => {
     // Slow auto-slide (luxury timing)
     const interval = setInterval(() => {
@@ -163,6 +173,7 @@ const Hero = () => {
             
             <div className="hero-cta" ref={ctaRef}>
               <motion.a
+                ref={magneticBtnRef}
                 href="#book"
                 className="btn btn-primary magnetic-btn"
                 onClick={(e) => {
