@@ -2,24 +2,57 @@
    Ace of Blades Barbershop - Global Styles
    ============================================ */
 
-/* CSS Variables - Brand Colors */
+/* CSS Variables - Luxury Brand System */
 :root {
-    --primary-color: #1a1a1a;
+    /* Colors - Luxury Palette */
+    --primary-color: #0a0a0a;
     --accent-color: #d4af37;
+    --accent-gold: #f4d03f;
     --accent-dark: #b8941f;
+    --accent-light: #f7e7a8;
     --text-primary: #1a1a1a;
-    --text-secondary: #666666;
-    --text-light: #999999;
+    --text-secondary: #4a4a4a;
+    --text-light: #8a8a8a;
+    --text-white: #ffffff;
     --bg-white: #ffffff;
-    --bg-light: #f8f8f8;
-    --bg-dark: #1a1a1a;
-    --border-color: #e0e0e0;
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.15);
-    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.2);
-    --transition: all 0.3s ease;
+    --bg-cream: #faf8f3;
+    --bg-light: #f5f5f5;
+    --bg-dark: #0a0a0a;
+    --bg-luxury: #1a1a1a;
+    --border-color: #e8e8e8;
+    --border-luxury: rgba(212, 175, 55, 0.2);
+    
+    /* Shadows - Luxury Depth */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.12);
+    --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.16);
+    --shadow-luxury: 0 24px 64px rgba(0, 0, 0, 0.2);
+    --shadow-gold: 0 8px 32px rgba(212, 175, 55, 0.3);
+    
+    /* Transitions - Smooth Luxury */
+    --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Typography - Luxury Pairing */
     --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    --font-display: 'Playfair Display', serif;
+    --font-serif: 'Cormorant Garamond', serif;
+    --font-display: 'Cinzel', serif;
+    
+    /* Spacing - Luxury Scale */
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 2rem;
+    --space-lg: 4rem;
+    --space-xl: 6rem;
+    --space-2xl: 8rem;
+    
+    /* Border Radius - Soft Luxury */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-full: 9999px;
 }
 
 /* Reset & Base Styles */
@@ -59,95 +92,158 @@ ul {
     list-style: none;
 }
 
-/* Container */
+/* Container - Luxury Layouts */
 .container {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 var(--space-lg);
 }
 
-/* Typography */
+.container-wide {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
+}
+
+.container-narrow {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
+}
+
+/* Typography - Luxury System */
 h1, h2, h3, h4, h5, h6 {
-    font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: 1rem;
+    font-weight: 600;
+    line-height: 1.1;
+    margin-bottom: var(--space-md);
+    letter-spacing: -0.02em;
 }
 
 h1 {
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-family: var(--font-display);
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
 }
 
 h2 {
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: -0.02em;
 }
 
 h3 {
-    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-family: var(--font-serif);
+    font-weight: 500;
+}
+
+p {
+    font-size: clamp(1rem, 1.5vw, 1.125rem);
+    line-height: 1.8;
+    letter-spacing: 0.01em;
+    color: var(--text-secondary);
 }
 
 .section-header {
+    margin-bottom: var(--space-xl);
+}
+
+.section-header.centered {
     text-align: center;
-    margin-bottom: 4rem;
+}
+
+.section-header.asymmetric {
+    max-width: 60%;
+    padding-left: var(--space-lg);
 }
 
 .section-subtitle {
-    font-size: 1.125rem;
-    color: var(--text-secondary);
-    margin-top: 0.5rem;
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    color: var(--text-light);
+    margin-top: var(--space-sm);
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-size: 0.875rem;
 }
 
 .accent-text {
     color: var(--accent-color);
 }
 
-/* Buttons */
+/* Buttons - Luxury Style */
 .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 12px 24px;
-    font-weight: 600;
+    padding: 18px 36px;
+    font-weight: 500;
     text-align: center;
-    border-radius: 4px;
+    border-radius: var(--radius-full);
     transition: var(--transition);
     cursor: pointer;
-    border: 2px solid transparent;
-    font-size: 1rem;
-    min-height: 44px;
-    min-width: 120px;
+    border: 1px solid transparent;
+    font-size: 0.9375rem;
+    min-height: 56px;
+    min-width: 160px;
     font-family: var(--font-primary);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.btn:hover::before {
+    left: 100%;
 }
 
 .btn-primary {
     background-color: var(--accent-color);
-    color: var(--bg-white);
+    color: var(--bg-dark);
     border-color: var(--accent-color);
+    box-shadow: var(--shadow-gold);
 }
 
 .btn-primary:hover {
-    background-color: var(--accent-dark);
-    border-color: var(--accent-dark);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
+    background-color: var(--accent-gold);
+    border-color: var(--accent-gold);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-gold), 0 12px 40px rgba(212, 175, 55, 0.4);
 }
 
 .btn-outline {
     background-color: transparent;
-    color: var(--text-primary);
-    border-color: var(--text-primary);
+    color: var(--text-white);
+    border-color: var(--text-white);
+    backdrop-filter: blur(10px);
 }
 
 .btn-outline:hover {
-    background-color: var(--text-primary);
-    color: var(--bg-white);
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+    transform: translateY(-3px);
 }
 
 .btn-large {
-    padding: 16px 32px;
-    font-size: 1.125rem;
-    min-height: 56px;
+    padding: 22px 48px;
+    font-size: 1rem;
+    min-height: 64px;
+    min-width: 200px;
 }
 
 .btn-small {

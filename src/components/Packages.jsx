@@ -15,7 +15,7 @@ const Packages = () => {
     const scrollTriggers = []
     
     if (header) {
-      gsap.set(header, { opacity: 0, y: 30 })
+      gsap.set(header, { opacity: 0, y: 40 })
       const headerSt = ScrollTrigger.create({
         trigger: sectionRef.current,
         start: 'top 80%',
@@ -23,8 +23,8 @@ const Packages = () => {
           gsap.to(header, {
             opacity: 1,
             y: 0,
-            duration: 0.8,
-            ease: 'power2.out'
+            duration: 1,
+            ease: 'power3.out'
           })
         }
       })
@@ -32,7 +32,7 @@ const Packages = () => {
     }
     
     cards.forEach((card, index) => {
-      gsap.set(card, { opacity: 0, y: 50, scale: 0.95 })
+      gsap.set(card, { opacity: 0, y: 60, scale: 0.95 })
       
       const st = ScrollTrigger.create({
         trigger: card,
@@ -42,9 +42,9 @@ const Packages = () => {
             opacity: 1,
             y: 0,
             scale: 1,
-            duration: 0.8,
-            ease: 'back.out(1.7)',
-            delay: index * 0.15
+            duration: 1,
+            ease: 'power3.out',
+            delay: index * 0.2
           })
         }
       })
@@ -62,35 +62,43 @@ const Packages = () => {
     {
       featured: true,
       badge: 'Most Popular',
-      title: 'The Complete Gentleman',
+      title: 'The Presidential',
+      subtitle: 'Complete Luxury Experience',
       price: '$95',
+      originalPrice: '$120',
       features: [
-        '✓ Precision Haircut',
-        '✓ Professional Beard Trim',
-        '✓ Hot Towel Shave',
-        '✓ Hair Wash & Styling',
-        '✓ Premium Products'
-      ]
+        'Precision Haircut',
+        'Professional Beard Trim',
+        'Hot Towel Shave',
+        'Hair Wash & Conditioning',
+        'Premium Styling Products',
+        'Complimentary Consultation'
+      ],
+      highlight: true
     },
     {
       featured: false,
       title: 'The Executive',
+      subtitle: 'Professional Grooming',
       price: '$75',
       features: [
-        '✓ Premium Haircut',
-        '✓ Beard Trim & Styling',
-        '✓ Hair Wash',
-        '✓ Finishing Products'
+        'Premium Haircut',
+        'Beard Trim & Styling',
+        'Hair Wash',
+        'Finishing Products',
+        'Style Consultation'
       ]
     },
     {
       featured: false,
       title: 'The Classic',
+      subtitle: 'Essential Grooming',
       price: '$60',
       features: [
-        '✓ Professional Haircut',
-        '✓ Beard Trim',
-        '✓ Styling'
+        'Professional Haircut',
+        'Beard Trim',
+        'Styling',
+        'Product Application'
       ]
     }
   ]
@@ -103,39 +111,67 @@ const Packages = () => {
   }
 
   return (
-    <section id="packages" className="packages" ref={sectionRef}>
-      <div className="container">
-        <div className="section-header">
-          <h2>Premium Packages</h2>
-          <p className="section-subtitle">Complete grooming experiences designed to elevate your look</p>
+    <section id="packages" className="packages luxury-packages" ref={sectionRef}>
+      <div className="packages-background" />
+      <div className="container-wide">
+        <div className="section-header centered">
+          <p className="section-subtitle">Premium Packages</p>
+          <h2>Complete Grooming Experiences</h2>
+          <p className="section-description">
+            Curated packages designed to elevate your entire grooming routine
+          </p>
         </div>
+
         <div className="packages-grid">
           {packages.map((pkg, index) => (
             <motion.div
               key={index}
               className={`package-card ${pkg.featured ? 'featured' : ''}`}
-              whileHover={{ y: -8, scale: 1.02 }}
-              transition={{ type: 'spring', stiffness: 300 }}
+              whileHover={{ y: -10, scale: 1.02 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
             >
-              {pkg.badge && <div className="package-badge">{pkg.badge}</div>}
-              <h3>{pkg.title}</h3>
-              <div className="package-price">{pkg.price}</div>
+              {pkg.badge && (
+                <div className="package-badge">
+                  <span className="badge-text">{pkg.badge}</span>
+                  <div className="badge-ribbon" />
+                </div>
+              )}
+              
+              <div className="package-header">
+                <h3 className="package-title">{pkg.title}</h3>
+                <p className="package-subtitle">{pkg.subtitle}</p>
+              </div>
+
+              <div className="package-pricing">
+                {pkg.originalPrice && (
+                  <span className="package-original-price">{pkg.originalPrice}</span>
+                )}
+                <div className="package-price-wrapper">
+                  <span className="package-currency">$</span>
+                  <span className="package-price">{pkg.price.replace('$', '')}</span>
+                </div>
+              </div>
+
               <ul className="package-features">
                 {pkg.features.map((feature, idx) => (
-                  <li key={idx}>{feature}</li>
+                  <li key={idx}>
+                    <span className="feature-check">✓</span>
+                    <span>{feature}</span>
+                  </li>
                 ))}
               </ul>
+
               <motion.a
                 href="#book"
-                className={`btn btn-large ${pkg.featured ? 'btn-primary' : 'btn-outline'}`}
+                className={`package-cta ${pkg.featured ? 'btn-primary' : 'btn-outline'}`}
                 onClick={(e) => {
                   e.preventDefault()
                   scrollToSection('#book')
                 }}
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Book This Package
+                Reserve This Package
               </motion.a>
             </motion.div>
           ))}
@@ -146,4 +182,3 @@ const Packages = () => {
 }
 
 export default Packages
-
