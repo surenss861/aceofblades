@@ -17,7 +17,6 @@ import Booking from './components/Booking'
 import Contact from './components/Contact'
 import Blog from './components/Blog'
 import Newsletter from './components/Newsletter'
-import EmailCapture from './components/EmailCapture'
 import StickyBooking from './components/StickyBooking'
 import Loader from './components/Loader'
 import StylistRecommender from './components/StylistRecommender'
@@ -81,7 +80,6 @@ function App() {
       <Contact />
       <Newsletter />
       <Footer />
-      <EmailCapture />
       <StickyBooking />
       <StylistRecommender />
     </div>
