@@ -20,8 +20,6 @@ import Newsletter from './components/Newsletter'
 import StickyBooking from './components/StickyBooking'
 import Loader from './components/Loader'
 import StylistRecommender from './components/StylistRecommender'
-import GiftCards from './components/GiftCards'
-import ReferralProgram from './components/ReferralProgram'
 import SocialFeed from './components/SocialFeed'
 import ClientStories from './components/ClientStories'
 import Footer from './components/Footer'
@@ -74,8 +72,6 @@ function App() {
       <FAQ />
       <Blog />
       <SocialFeed />
-      <GiftCards />
-      <ReferralProgram />
       <Booking />
       <Contact />
       <Newsletter />
