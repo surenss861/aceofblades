@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { initSectionHeaderAnimation } from '../utils/sectionAnimations'
 
 const About = () => {
   const sectionRef = useRef(null)
@@ -10,6 +11,9 @@ const About = () => {
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
+
+    // Staggered header animation
+    const cleanupHeader = initSectionHeaderAnimation(sectionRef)
 
     if (!textRef.current) return
 
@@ -23,30 +27,35 @@ const About = () => {
         gsap.to(paragraphs, {
           opacity: 1,
           y: 0,
-          duration: 1,
+          duration: 1.2,
           stagger: 0.2,
           ease: 'power3.out'
         })
       }
     })
 
-    // Image animation
-    if (imageRef.current) {
-      gsap.from(imageRef.current, {
-        scale: 1.1,
-        opacity: 0,
-        duration: 1.2,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: imageRef.current,
-          start: 'top 80%',
-          toggleActions: 'play none none reverse'
+    // Stats animation
+    const stats = sectionRef.current?.querySelectorAll('.stat-item-editorial')
+    if (stats && stats.length > 0) {
+      gsap.set(stats, { opacity: 0, y: 30 })
+      ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: 'top 60%',
+        onEnter: () => {
+          gsap.to(stats, {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            stagger: 0.15,
+            ease: 'power2.out'
+          })
         }
       })
     }
 
     return () => {
       st.kill()
+      if (cleanupHeader) cleanupHeader()
       ScrollTrigger.refresh()
     }
   }, [])

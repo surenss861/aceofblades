@@ -53,8 +53,8 @@
     --font-display: 'Cinzel Display', 'Cinzel', serif;
     --font-weight-heading: 600;
     --font-weight-body: 300;
-    --line-height-heading: 1.2;
-    --line-height-body: 1.8;
+    --line-height-heading: 1.3; /* Increased for more breathing room */
+    --line-height-body: 1.9; /* Increased for luxury readability */
     
     /* Spacing - Luxury Scale (Increased for dramatic breathing room) */
     --space-xs: 0.5rem;
@@ -151,14 +151,35 @@ ul {
 }
 
 /* Typography - Luxury System */
-h1, h2, h3, h4, h5, h6 {
-    font-weight: var(--font-weight-heading);
-    line-height: var(--line-height-heading);
-    margin-bottom: var(--space-md);
-    letter-spacing: -0.02em;
-    font-family: var(--font-serif);
-    color: var(--off-white-cream);
-}
+    h1, h2, h3, h4, h5, h6 {
+        font-weight: var(--font-weight-heading);
+        line-height: var(--line-height-heading);
+        margin-bottom: var(--space-md);
+        letter-spacing: -0.02em;
+        font-family: var(--font-serif);
+        color: var(--off-white-cream);
+    }
+    
+    /* Enhanced heading spacing for luxury feel */
+    h1 {
+        letter-spacing: -0.04em;
+        line-height: 1.1;
+    }
+    
+    h2 {
+        letter-spacing: -0.03em;
+        line-height: 1.15;
+    }
+    
+    h3 {
+        letter-spacing: -0.02em;
+        line-height: 1.2;
+    }
+    
+    /* Enhanced spacing for headings */
+    h1, h2 {
+        margin-bottom: var(--space-lg);
+    }
 
 h1 {
     font-size: clamp(3.5rem, 9vw, 7rem);
@@ -184,14 +205,14 @@ h3 {
     font-family: var(--font-serif);
 }
 
-p {
-    font-size: clamp(1rem, 1.5vw, 1.125rem);
-    line-height: var(--line-height-body);
-    letter-spacing: 0.02em;
-    color: var(--muted-gold);
-    font-weight: var(--font-weight-body);
-    font-family: var(--font-primary);
-}
+    p {
+        font-size: clamp(1.125rem, 1.8vw, 1.375rem); /* Increased for better readability */
+        line-height: 1.9; /* Increased from 1.8 for more breathing room */
+        letter-spacing: 0.03em; /* Increased for luxury feel */
+        color: var(--muted-gold);
+        font-weight: var(--font-weight-body);
+        font-family: var(--font-primary);
+    }
 
 .section-header {
     margin-bottom: var(--space-2xl);
@@ -290,7 +311,10 @@ p {
     background-color: var(--muted-gold);
     border-color: var(--muted-gold);
     transform: translateY(-3px);
-    box-shadow: 0 8px 32px rgba(201, 168, 106, 0.5), 0 0 40px rgba(201, 168, 106, 0.3);
+    box-shadow: 
+        0 8px 32px rgba(201, 168, 106, 0.5), 
+        0 0 40px rgba(201, 168, 106, 0.3),
+        inset 0 2px 10px rgba(255, 255, 255, 0.1);
 }
 
 .btn-outline {
@@ -322,7 +346,10 @@ p {
     border-color: var(--muted-gold);
     color: var(--muted-gold);
     transform: translateY(-3px);
-    box-shadow: 0 6px 24px rgba(201, 168, 106, 0.3);
+    box-shadow: 
+        0 6px 24px rgba(201, 168, 106, 0.3),
+        inset 0 2px 10px rgba(201, 168, 106, 0.1),
+        0 0 20px rgba(201, 168, 106, 0.2);
 }
 
 .btn-outline-gold {
@@ -338,7 +365,10 @@ p {
     color: var(--champagne-gold);
     border-color: var(--muted-gold);
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(201, 168, 106, 0.3);
+    box-shadow: 
+        0 8px 24px rgba(201, 168, 106, 0.3),
+        inset 0 2px 10px rgba(201, 168, 106, 0.1),
+        0 0 20px rgba(201, 168, 106, 0.2);
 }
 
 .btn-large {
@@ -902,6 +932,20 @@ button:focus {
     max-width: 500px;
 }
 
+.barber-signature-quote {
+    font-size: clamp(1.125rem, 1.8vw, 1.375rem);
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--champagne-gold);
+    margin: var(--space-lg) 0;
+    padding: var(--space-md) 0;
+    border-top: 1px solid rgba(201, 168, 106, 0.2);
+    border-bottom: 1px solid rgba(201, 168, 106, 0.2);
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+    font-weight: 400;
+}
+
 .barber-specialty {
     font-size: 0.9375rem;
     color: var(--muted-gold);
@@ -994,11 +1038,10 @@ button:focus {
 
 .before-after-item {
     position: relative;
-    border-radius: 0;
+    border-radius: var(--radius-lg);
     overflow: hidden;
     border: 1px solid rgba(201, 168, 106, 0.2);
     transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: pointer;
     background: rgba(26, 26, 26, 0.6);
     padding: var(--space-md);
 }
@@ -1008,20 +1051,37 @@ button:focus {
     transform: translateY(-5px);
 }
 
-.before-after-pair {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-md);
-    margin-bottom: var(--space-md);
-}
-
-.before-after-image {
+/* Drag-to-Reveal Slider Container */
+.before-after-slider-container {
     position: relative;
     width: 100%;
     aspect-ratio: 1;
     overflow: hidden;
-    border-radius: 0;
-    border: 1px solid rgba(201, 168, 106, 0.2);
+    cursor: grab;
+    user-select: none;
+    border-radius: var(--radius-md);
+}
+
+.before-after-slider-container:active {
+    cursor: grabbing;
+}
+
+.before-after-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.before-image {
+    z-index: 1;
+}
+
+.after-image {
+    z-index: 2;
+    transition: clip-path 0.1s ease-out;
 }
 
 .before-after-title {
@@ -1093,8 +1153,59 @@ button:focus {
     pointer-events: none;
 }
 
-.before-after-item:hover .before-after-overlay {
-    opacity: 1;
+/* Drag Handle */
+.before-after-handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--champagne-gold);
+    z-index: 3;
+    transform: translateX(-50%);
+    pointer-events: none;
+    transition: left 0.1s ease-out;
+}
+
+.handle-line {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 100%;
+    background: var(--champagne-gold);
+    box-shadow: 0 0 10px rgba(201, 168, 106, 0.5);
+}
+
+.handle-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 48px;
+    height: 48px;
+    background: var(--champagne-gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--matte-black);
+    box-shadow: 0 4px 20px rgba(201, 168, 106, 0.4);
+    border: 2px solid var(--matte-black);
+}
+
+.handle-circle svg {
+    width: 20px;
+    height: 20px;
+}
+
+.before-after-item:hover .before-after-handle {
+    box-shadow: 0 0 20px rgba(201, 168, 106, 0.6);
+}
+
+.before-after-item:hover .handle-circle {
+    transform: translate(-50%, -50%) scale(1.1);
+    box-shadow: 0 6px 30px rgba(201, 168, 106, 0.5);
 }
 
 @media (max-width: 768px) {
@@ -2362,6 +2473,66 @@ button:focus {
     z-index: 1;
 }
 
+/* Simplified Footer Layout */
+.footer-content-simplified {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+    margin-bottom: var(--space-xl);
+    position: relative;
+    z-index: 1;
+}
+
+.footer-brand {
+    text-align: center;
+    margin-bottom: var(--space-md);
+}
+
+.footer-info-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-lg);
+    font-size: 0.9375rem;
+    color: var(--muted-gold);
+}
+
+.footer-address p {
+    margin: 0;
+    font-weight: 300;
+}
+
+.footer-contact {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.footer-contact a {
+    color: var(--muted-gold);
+    transition: color 0.3s ease;
+    text-decoration: none;
+}
+
+.footer-contact a:hover {
+    color: var(--champagne-gold);
+}
+
+.footer-separator {
+    color: rgba(201, 168, 106, 0.3);
+}
+
+.footer-social a {
+    color: var(--muted-gold);
+    transition: color 0.3s ease;
+    text-decoration: none;
+}
+
+.footer-social a:hover {
+    color: var(--champagne-gold);
+}
+
 .footer-logo {
     height: 70px;
     width: auto;
@@ -2458,6 +2629,16 @@ button:focus {
         grid-template-columns: 1fr;
         text-align: center;
         gap: var(--space-lg);
+    }
+    
+    .footer-content-simplified {
+        gap: var(--space-lg);
+    }
+    
+    .footer-info-row {
+        flex-direction: column;
+        gap: var(--space-md);
+        text-align: center;
     }
     
     .footer-section a {

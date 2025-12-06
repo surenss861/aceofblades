@@ -10,11 +10,12 @@ export const initMagneticButton = (button) => {
     const x = e.clientX - rect.left - rect.width / 2
     const y = e.clientY - rect.top - rect.height / 2
     
-    // Subtle pull (5px max) - luxury feel
-    const moveX = x * 0.1
-    const moveY = y * 0.1
+    // Enhanced magnetic pull (slightly more responsive) - luxury feel
+    const moveX = x * 0.15
+    const moveY = y * 0.15
     
     button.style.transform = `translate(${moveX}px, ${moveY}px)`
+    button.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
   }
 
   const handleMouseLeave = () => {

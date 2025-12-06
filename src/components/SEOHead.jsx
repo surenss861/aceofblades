@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async'
 const SEOHead = ({ 
   title = "Ace of Blades Barbershop | Scarborough's Premium Haircuts & Fades",
   description = "Ace of Blades Barbershop - Scarborough's premium barbershop offering professional haircuts, fades, beard trims, and hot towel shaves. Book with Ace, Chris, or Dhan at 2207 Kingston Rd.",
-  keywords = "Scarborough barbershop, haircuts, fades, beard trims, Kingston Road barber, premium barbershop, hot towel shave, Scarborough hair salon, best barber near me",
+  keywords = "luxury barbershop Toronto, best fade Scarborough, premium barbershop Scarborough, Scarborough barbershop, haircuts, fades, beard trims, Kingston Road barber, premium barbershop, hot towel shave, Scarborough hair salon, best barber near me, luxury grooming Toronto, premium haircuts Scarborough",
   image = "https://aceofbladesco.com/images/og-image.jpg",
   url = "https://aceofbladesco.com"
 }) => {
@@ -43,6 +43,94 @@ const SEOHead = ({
 
       {/* Canonical URL */}
       <link rel="canonical" href={url} />
+
+      {/* Enhanced Structured Data for Local SEO */}
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "HairSalon",
+          "name": "Ace of Blades Barbershop",
+          "image": "https://aceofbladesco.com/aceofbladeslogo.avif",
+          "description": description,
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "2207 Kingston Rd",
+            "addressLocality": "Scarborough",
+            "addressRegion": "ON",
+            "postalCode": "M1N 1T5",
+            "addressCountry": "CA"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "43.7500",
+            "longitude": "-79.2500"
+          },
+          "url": url,
+          "telephone": "+1-416-XXX-XXXX",
+          "priceRange": "$$",
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+              "opens": "09:00",
+              "closes": "19:00"
+            }
+          ],
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "150",
+            "bestRating": "5",
+            "worstRating": "1"
+          },
+          "serviceArea": {
+            "@type": "City",
+            "name": "Toronto"
+          },
+          "areaServed": {
+            "@type": "City",
+            "name": "Scarborough"
+          },
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Barbershop Services",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Haircut + Beard",
+                  "description": "Complete transformation with precision haircut and expert beard grooming"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Design",
+                  "description": "Custom patterns, logos, and artistic designs"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Beard Trim / Lineup",
+                  "description": "Precision trims and flawless lineups"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Kids Cut",
+                  "description": "Gentle, patient approach to children's haircuts"
+                }
+              }
+            ]
+          }
+        })}
+      </script>
     </Helmet>
   )
 }

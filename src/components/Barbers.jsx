@@ -70,7 +70,8 @@ const Barbers = () => {
       title: 'Owner & Master Barber',
       experience: '10+ Years',
       bio: 'The visionary behind Ace of Blades. Ace brings over a decade of mastery to every cut, specializing in precision fades that have become legendary in Scarborough.',
-      specialty: 'Precision Fades • Creative Designs • Scissor Mastery'
+      specialty: 'Precision Fades • Creative Designs • Scissor Mastery',
+      signatureQuote: '"Every cut is a statement. Every line is intentional."'
     },
     {
       image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=800&h=1000&fit=crop&q=90',
@@ -78,7 +79,8 @@ const Barbers = () => {
       title: 'Senior Barber',
       experience: '8+ Years',
       bio: 'A master of the classics. Chris combines traditional barbering techniques with modern precision, delivering flawless hot towel shaves and impeccable beard work.',
-      specialty: 'Hot Towel Shaves • Beard Mastery • Classic Cuts'
+      specialty: 'Hot Towel Shaves • Beard Mastery • Classic Cuts',
+      signatureQuote: '"Tradition meets precision. That\'s where mastery lives."'
     },
     {
       image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=800&h=1000&fit=crop&q=90',
@@ -86,7 +88,8 @@ const Barbers = () => {
       title: 'Expert Barber',
       experience: '6+ Years',
       bio: 'The creative force. Dhan excels at bringing your vision to life with contemporary styles and artistic flair. Every cut is a collaboration.',
-      specialty: 'Modern Styles • Creative Designs • Color Work'
+      specialty: 'Modern Styles • Creative Designs • Color Work',
+      signatureQuote: '"Your vision, my craft. Together we create art."'
     }
   ]
 
@@ -132,6 +135,7 @@ const Barbers = () => {
                 <h3 className="barber-name">{barber.name}</h3>
                 <p className="barber-title">{barber.title}</p>
                 <p className="barber-bio">{barber.bio}</p>
+                <div className="barber-signature-quote">{barber.signatureQuote}</div>
                 <div className="barber-specialty">{barber.specialty}</div>
                 
                 <motion.a
